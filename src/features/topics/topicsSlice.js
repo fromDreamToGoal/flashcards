@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addQuiz } from "../quizzes/quizzesSlice";
 
 export const topicsSlice = createSlice({
     name: "topics",
@@ -16,6 +17,12 @@ export const topicsSlice = createSlice({
                 quizIds: []
             };
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(addQuiz, (state, action) => {
+            const { id, topicId } = action.payload;
+            state.topics[topicId].quizIds.push(id);
+        });
     }
 });
 

@@ -21,7 +21,12 @@ export const topicsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(addQuiz, (state, action) => {
             const { id, topicId } = action.payload;
-            state.topics[topicId].quizIds.push(id);
+            const topic = state.topics[topicId];
+            if (topic) {
+                topic.quizIds.push(id);
+            } else {
+                console.error(`Could not find topic with id ${topicId}`);
+            }
         });
     }
 });

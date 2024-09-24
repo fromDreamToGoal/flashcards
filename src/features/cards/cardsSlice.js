@@ -18,6 +18,6 @@ export const cardsSlice = createSlice({
     }
 });
 
-export const selectCards = (id) => (state) => state.cards.find(card => card.id === id);
+export const selectCards = (id) => (state) => state.cards.cards[id];
 export const { addCard } = cardsSlice.actions;
 export default cardsSlice.reducer;
